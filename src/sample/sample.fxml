@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="100.0" minWidth="100.0" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+          <Text fontSmoothingType="LCD" layoutY="62.265625" strokeType="OUTSIDE" strokeWidth="0.0" text="Tic-tac-toe" textAlignment="CENTER" wrappingWidth="300.203125">
+              <font>
+                  <Font size="50.0" />
+              </font>
+          </Text>
+          <Button alignment="CENTER" layoutX="105.0" layoutY="135.0" mnemonicParsing="false" onAction="#start" prefHeight="30.0" prefWidth="90.0" text="Try to play?" textOverrun="CLIP">
+              <font>
+                  <Font size="13.0" />
+              </font>
+          </Button>
+      <Button layoutX="105.0" layoutY="199.0" mnemonicParsing="false" onAction="#exit" text="Do not want">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
