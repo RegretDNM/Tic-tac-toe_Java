@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public Stage MainStage;
+    public static Stage MainStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -16,6 +16,8 @@ public class Main extends Application {
         primaryStage.setTitle("Tic-tac-toe");
         primaryStage.setScene(new Scene(root, 300, 300));
         MainStage = primaryStage;
+        primaryStage.setResizable(false);
+        MainStage.setResizable(false);
         primaryStage.show();
     }
 

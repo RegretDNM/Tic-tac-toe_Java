@@ -6,19 +6,31 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javax.swing.*;
+//import
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.sleep;
 import static sample.Main.MainStage;
 
 /**
- * Created by Regret on 23.12.2017.
+ * Created by Regret on 18.02.2018.
  */
-public class GameController {
+public class CompGameController {
+
     boolean flag = true, is_win = false;
     String figure;
     int count = 0;
+
+    Random random = new Random();
+    /*int setup = (random.nextInt(2));
+
+    public int getSetup() {
+        return setup;
+    }*/
 
     @FXML
     private Label p1;
@@ -97,96 +109,193 @@ public class GameController {
         return win;
     }
 
-    public void who_win (boolean flag){
+    public int checkChar(int find, Label point) {
+        String check = point.getText();
+
+        if (check != "X" && check != "O") {
+            find = 1;
+        }
+
+        return find;
+    }
+
+    public void compTurn() {
+        int check = (random.nextInt(9)), find = 0;//Рандомно генерируется значение от 0 до 8, для выбора клетки, find — проверка нахождения символа в выбранной клетке
+
+        switch (check) {
+            case 0: find = checkChar(find, p1);
+                if (find  == 1){
+                    draw(p1);
+                }
+                else compTurn();
+                break;
+
+            case 1: find = checkChar(find, p2);
+                if (find  == 1){
+                    draw(p2);
+                }
+                else compTurn();
+                break;
+
+            case 2: find = checkChar(find, p3);
+                if (find  == 1){
+                    draw(p3);
+                }
+                else compTurn();
+                break;
+
+            case 3: find = checkChar(find, p4);
+                if (find  == 1){
+                    draw(p4);
+                }
+                else compTurn();
+                break;
+
+            case 4: find = checkChar(find, p5);
+                if (find  == 1){
+                    draw(p5);
+                }
+                else compTurn();
+                break;
+
+            case 5: find = checkChar(find, p6);
+                if (find  == 1){
+                    draw(p6);
+                }
+                else compTurn();
+                break;
+
+            case 6: find = checkChar(find, p7);
+                if (find  == 1){
+                    draw(p7);
+                }
+                else compTurn();
+                break;
+
+            case 7: find = checkChar(find, p8);
+                if (find  == 1){
+                    draw(p8);
+                }
+                else compTurn();
+                break;
+
+            case 8: find = checkChar(find, p9);
+                if (find  == 1){
+                    draw(p9);
+                }
+                else compTurn();
+                break;
+
+        }
+    }
+
+    public void who_win (boolean flag) throws Exception {
         try {
             if (flag) {
-                Parent p1wins = FXMLLoader.load(getClass().getResource("p1wins.fxml"));
-                Scene p1wins_screen = new Scene(p1wins);
-                MainStage.setScene(p1wins_screen);
+                Parent pwins = FXMLLoader.load(getClass().getResource("pwins.fxml"));
+                Scene pwins_screen = new Scene(pwins);
+                MainStage.setScene(pwins_screen);
                 MainStage.show();
             }
             else {
-                Parent p2wins = FXMLLoader.load(getClass().getResource("p2wins.fxml"));
-                Scene p2wins_screen = new Scene(p2wins);
-                MainStage.setScene(p2wins_screen);
+                Parent plost = FXMLLoader.load(getClass().getResource("plost.fxml"));
+                Scene plost_screen = new Scene(plost);
+                MainStage.setScene(plost_screen);
                 MainStage.show();
             }
+
         }
         catch (Exception e) {
 
         }
     }
 
-    public void draw(Label point) throws Exception {
+    public void draw(Label point){
         String check = point.getText();
 
         if (check != "X" && check != "O") {
             if (flag) {
                 figure = "X";
-            }
-            else {
+            } else {
                 figure = "O";
             }
 
             point.setText(figure);
 
             is_win = win_check(is_win);
-            if (is_win) {
-                who_win(flag);
-                count--;
+            try {
+                if (is_win) {
+                    who_win(flag);
+                    return;
+                }
+            }
+            catch (Exception e) {
+
             }
 
+
             flag = !flag;
-
-
             count++;
-            if (count > 8) {
-                try {
+
+            try {
+                if (count == 9) {
                     Parent draw = FXMLLoader.load(getClass().getResource("draw.fxml"));
                     Scene draw_screen = new Scene(draw);
                     MainStage.setScene(draw_screen);
                     MainStage.show();
+                    return;
+                }
+            }
+            catch (Exception e) {
+
+            }
+
+            if (!flag) {
+                MainStage.show();
+                try {
+                    TimeUnit.MILLISECONDS.sleep(100);
                 }
                 catch (Exception e) {
 
                 }
+                compTurn();
             }
         }
     }
 
     public void draw1(ActionEvent click) throws Exception {
-        draw (p1);
+        draw(p1);
     }
 
     public void draw2(ActionEvent click) throws Exception {
-        draw (p2);
+        draw(p2);
     }
 
     public void draw3(ActionEvent click) throws Exception {
-        draw (p3);
+        draw(p3);
     }
 
     public void draw4(ActionEvent click) throws Exception {
-        draw (p4);
+        draw(p4);
     }
 
     public void draw5(ActionEvent click) throws Exception {
-        draw (p5);
+        draw(p5);
     }
 
     public void draw6(ActionEvent click) throws Exception {
-        draw (p6);
+        draw(p6);
     }
 
     public void draw7(ActionEvent click) throws Exception {
-        draw (p7);
+        draw(p7);
     }
 
     public void draw8(ActionEvent click) throws Exception {
-        draw (p8);
+        draw(p8);
     }
 
     public void draw9(ActionEvent click) throws Exception {
-        draw (p9);
+        draw(p9);
     }
 }
