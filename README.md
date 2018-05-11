@@ -1,6 +1,4 @@
 # Tic-tac-toe_Java
-First try to do something more serious than a calculator in a console. For two players only.
-
-How to: .jar file is in /out/artifacts/xo_try3_jar directory.
+First try to do something more serious than a calculator in a console. Now for one or two players.
 
 Feel free to use, I guess?
