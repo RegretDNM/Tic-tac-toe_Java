@@ -8,15 +8,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Controller {
+import static sample.Main.MainStage;
 
+public class Controller {
 
     public void start (ActionEvent click) throws Exception {
         Parent game = FXMLLoader.load(getClass().getResource("game.fxml"));
         Scene game_screen = new Scene(game);
-        Stage game_stage = (Stage) ((Node) click.getSource()).getScene().getWindow();
-        game_stage.setScene(game_screen);
-        game_stage.show();
+        MainStage.setScene(game_screen);
+        MainStage.show();
+    }
+
+    public void compStart (ActionEvent click) throws Exception {
+        Parent game = FXMLLoader.load(getClass().getResource("compgame.fxml"));
+        Scene game_screen = new Scene(game);
+        MainStage.setScene(game_screen);
+        MainStage.show();
     }
 
     public void exit () {
