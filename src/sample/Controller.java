@@ -26,6 +26,13 @@ public class Controller {
         MainStage.show();
     }
 
+    public void minimaxStart (ActionEvent click) throws Exception {
+        Parent game = FXMLLoader.load(getClass().getResource("minimaxgame.fxml"));
+        Scene game_screen = new Scene(game);
+        MainStage.setScene(game_screen);
+        MainStage.show();
+    }
+
     public void exit () {
         Platform.exit();
         System.exit(0);
